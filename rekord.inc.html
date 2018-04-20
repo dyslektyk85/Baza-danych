@@ -1,0 +1,25 @@
+<form method="POST" action="index.php?id=rekord">
+     <input type="text" name="nazwisko"><button type="submit">Szukaj</button></p>
+
+</table>
+<?php
+    $x = $_POST['nazwisko'];
+    $sql = "SELECT * FROM dane_osobowe WHERE nazwisko LIKE '$x'";
+    $result = $conn->query($sql);
+
+$i=1;
+if ($result->num_rows > 0) 
+{
+    echo "<table border=\"1\">";
+    while($row = mysqli_fetch_assoc($result))
+    {
+        echo '<tr><td>' . $i++.'('. $row["id"].')'  .  '</td><td>' . $row["imie"] . '</td><td>' . $row["nazwisko"] . '</td><td>' . $row["data"] . '</td><td>' . $row["wiek"] . '</td></tr>';
+     
+    }
+    echo "</table>";
+} 
+else 
+{
+    echo "0 results";
+}
+?>		
